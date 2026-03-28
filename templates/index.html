@@ -3,65 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Chatbot</title>
+    <title>Cross-Browser Compatibility Assistant</title>
     <style>
-        /* Title block mate */
-.chat-header {
-    background-color: #007bff; /* Blue color */
-    color: white;
-    padding: 15px;
-    text-align: center;
-    width: 400px; 
-    margin: 0 auto; 
-    border-radius: 10px 10px 0 0; 
-}
+        /* Modern UI Styling */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
 
-.chat-header h2 {
-    margin: 0;
-    font-size: 18px;
-}
+        body { 
+            background: linear-gradient(135deg, #1a1a2e, #16213e); 
+            height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+        }
 
-.chat-header p {
-    margin: 5px 0 0;
-    font-size: 12px;
-    opacity: 0.9;
-}
+        .wrapper {
+            width: 420px;
+            height: 600px;
+            background: #1e1e1e;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
 
+        /* Header */
+        .chat-header {
+            background: #007bff;
+            background: linear-gradient(90deg, #007bff, #00c6ff);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .chat-header h2 { font-size: 18px; font-weight: 600; }
+        .chat-header p { font-size: 11px; opacity: 0.8; margin-top: 4px; }
 
-.chat-container {
-    width: 400px;
-    height: 500px;
-    margin: 0 auto;
-    background: #1e1e1e;
-    border-radius: 0 0 10px 10px; 
-    display: flex;
-    flex-direction: column;
-}
-        body { font-family: sans-serif; background: #121212; color: white; display: flex; justify-content: center; padding: 20px; }
-        .chat-container { width: 100%; max-width: 600px; background: #1e1e1e; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; height: 80vh; border: 1px solid #333; }
-        #chatbox { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
-        .input-area { display: flex; padding: 15px; background: #252525; gap: 10px; }
-        input { flex: 1; padding: 12px; border-radius: 8px; border: none; background: #333; color: white; outline: none; }
-        button { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
-        button:disabled { background: #555; }
-        .user-msg { align-self: flex-end; background: #007bff; padding: 10px 15px; border-radius: 15px 15px 0 15px; max-width: 80%; }
-        .bot-msg { align-self: flex-start; background: #333; padding: 10px 15px; border-radius: 15px 15px 15px 0; max-width: 80%; line-height: 1.5; }
+        /* Chat Display Area */
+        #chatbox {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: #121212;
+            scrollbar-width: thin;
+            scrollbar-color: #007bff #121212;
+        }
+
+        /* Message Bubbles */
+        .user-msg {
+            align-self: flex-end;
+            background: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 18px 18px 2px 18px;
+            max-width: 80%;
+            font-size: 14px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .bot-msg {
+            align-self: flex-start;
+            background: #2c2c2c;
+            color: #efefef;
+            padding: 10px 15px;
+            border-radius: 18px 18px 18px 2px;
+            max-width: 80%;
+            font-size: 14px;
+            line-height: 1.5;
+            white-space: pre-wrap; 
+            word-wrap: break-word;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Input Area */
+        .input-area {
+            display: flex;
+            padding: 15px;
+            background: #1e1e1e;
+            gap: 10px;
+            border-top: 1px solid #333;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px 18px;
+            border-radius: 25px;
+            border: 1px solid #444;
+            background: #252525;
+            color: white;
+            outline: none;
+            font-size: 14px;
+        }
+        input:focus { border-color: #007bff; }
+
+        button {
+            width: 45px;
+            height: 45px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+        button:hover { transform: scale(1.05); background: #0056b3; }
+        button:disabled { background: #555; cursor: not-allowed; }
+
     </style>
 </head>
 <body>
-<div class="chat-header">
-    <h2>🤖 Cross-Browser Assistant</h2>
-    <p>Ask me about Compatibility, Advantages, or Tools</p>
-</div>
-<div class="chat-container">
-    <div id="chatbox"></div>
+
+<div class="wrapper">
+    <div class="chat-header">
+        <h2>🤖 Cross-Browser Compatibility Assistant</h2>
+        <p>Expert Support for Web Development</p>
+    </div>
+    <div id="chatbox">
+        </div>
     <div class="input-area">
-        <input type="text" id="userInput" placeholder="Ask something..." onkeydown="if(event.key==='Enter') sendMessage()">
-        <button id="sendBtn" onclick="sendMessage()">Send</button>
+        <input type="text" id="userInput" placeholder="Type your question..." onkeydown="if(event.key==='Enter') sendMessage()">
+        <button id="sendBtn" onclick="sendMessage()">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+        </button>
     </div>
 </div>
 
-<script>async function sendMessage() {
+<script>
+async function sendMessage() {
     const inputField = document.getElementById("userInput");
     const sendBtn = document.getElementById("sendBtn");
     const chatbox = document.getElementById("chatbox");
@@ -78,16 +152,8 @@
     const typing = document.createElement("div");
     typing.className = "bot-msg";
     typing.id = "typing";
-    typing.innerHTML = "Typing<span id='dots'>.</span>";
+    typing.innerHTML = "Typing...";
     chatbox.appendChild(typing);
-
-   
-    let dots = 1;
-    const interval = setInterval(() => {
-        dots = (dots % 3) + 1;
-        document.getElementById("dots").innerText = ".".repeat(dots);
-    }, 400);
-
     chatbox.scrollTop = chatbox.scrollHeight;
 
     try {
@@ -98,22 +164,12 @@
         });
 
         const data = await response.json();
-
-       
-        clearInterval(interval);
         document.getElementById("typing").remove();
-
-       
         chatbox.innerHTML += `<div class="bot-msg">${data.reply}</div>`;
 
     } catch (error) {
-        clearInterval(interval);
-        document.getElementById("typing").remove();
-
-        chatbox.innerHTML += `
-        <div class="bot-msg" style="color:red;">
-            Error: Could not connect to server.
-        </div>`;
+        if(document.getElementById("typing")) document.getElementById("typing").remove();
+        chatbox.innerHTML += `<div class="bot-msg" style="color:#ff4d4d;">Error: Could not connect to the server.</div>`;
     } finally {
         sendBtn.disabled = false;
         chatbox.scrollTop = chatbox.scrollHeight;

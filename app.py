@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 
-GROQ_API_KEY = "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"
+GROQ_API_KEY = "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"
 client = Groq(api_key=GROQ_API_KEY)
 
 try:
